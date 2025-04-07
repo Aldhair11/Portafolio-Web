@@ -1,0 +1,56 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import "../../styles/pages/projects-info.css";
+import EcoImage from "../../assets/crud-2.png";
+
+
+import { animateHeroText } from "../../scripts/animations.js";
+
+
+setTimeout(() => {
+  if (typeof window !== "undefined") {
+    animateHeroText();
+  }
+}, 600);
+---
+
+<Layout>
+  <section class="py-12 bg-black text-white">
+    <div class="container mx-auto max-w-3xl px-6">
+      
+      <div class="flex justify-between items-center">
+        <h1 class="text-5xl font-bold hero-text">CRUD - ALBALEX</h1>
+      </div>
+
+      <div class="mt-6">
+        <img src={EcoImage.src} alt="Crud-Albalex" class="rounded-lg w-full shadow-lg hero-text" />
+        <a href="https://drive.google.com/file/d/1d8JlCIFarTDJqAdesvLyp1cB8B2aHbKt/view?usp=sharing" target="_blank" class="px-5 py-2 border border-gray-500 rounded-full hover:bg-gray-800 transition btn-prototipo">
+          Ver Prototipo
+        </a>
+      </div>
+
+      <div class="mt-10">
+        <h2 class="text-2xl font-semibold hero-text">¿De que trata?</h2>
+        <p class="text-gray-400 mt-4 hero-text">
+          CRUD - ALBALEX es un sistema de gestión de clientes y productos para una empresa que se dedica a la venta de productos de electricidad y ferrería industrial. El sistema contiene autenticacion y permite a los usuarios gestionar la información de los clientes y productos de manera eficiente, facilitando el seguimiento de las clientes  y el inventario.
+        </p>
+      </div>
+
+      <div class="mt-10">
+        <h3 class="text-lg font-semibold hero-text ">Tecnologias Usadas</h3>
+        <p class="text-gray-400 mt-2 hero-text">
+          HTML • PHP • CSS • Bootstrap • Laravel • MySQL • XAMPP
+        </p>
+      </div>
+
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import { animateHeroText } from "../../scripts/animations.js";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    animateHeroText();
+  });
+</script>

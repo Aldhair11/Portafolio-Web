@@ -1,0 +1,109 @@
+---
+
+import Layout from "../layouts/Layout.astro"
+import aboutI from "../assets/about.png"
+import "../styles/pages/about.css";
+import { onMount } from 'solid-js';
+import { motion } from 'framer-motion';
+
+import { animateHeroText } from "../scripts/animations.js";
+
+
+setTimeout(() => {
+  if (typeof window !== "undefined") {
+    animateHeroText();
+  }
+}, 600);
+
+const techIcons = [
+  
+  '/icons/astro.svg',
+  '/icons/spring.svg',
+  '/icons/figma.svg',
+  '/icons/github.svg',
+  '/icons/git.svg',
+  '/icons/vue.svg',
+  '/icons/angular.svg',
+  '/icons/html.svg',
+  '/icons/css.svg',
+  '/icons/js.svg',
+  '/icons/react.svg',
+  '/icons/node.svg',
+  '/icons/tailwind.svg',
+  //
+];
+---
+
+<Layout>
+  <main >
+   
+    <div class="image-container">
+      <img src={aboutI.src} alt="Mi Foto" class="remove-bg" />
+    </div>
+    
+    <div class="info-container">
+      <div class="about-me hero-text">
+        <h2 class="">Sobre mí</h2>
+
+        <p>Desde pequeño me ha fascinado la tecnología, y hoy transformo líneas de código en experiencias digitales impactantes. Mi pasion por la tecnologia me trajo hasta aqui, donde puedo crear y aprender todos los dias. Y trabajar en proyetos que conectan creatividad y funcionalidad es lo que me motiva. Siempre estoy buscando aprender nuevas tecnologias y mejorar mis habilidades.
+           Me encanta trabajar en equipo y colaborar con otros para lograr resultados excepcionales. Estoy emocionado por el futuro y las oportunidades que me esperan en el mundo del desarrollo web.</p>
+      </div>
+      
+      <div class="conocimientos-container hero-text">
+        <div class="bloque">
+          <h3>Conocimientos</h3>
+          <ul>
+            <li>HTML, CSS, JavaScript</li>
+            <li>React, Angular, Astro</li>
+            <li>Node.js, Spring Boot</li>
+          </ul>
+        </div>
+      
+        <div class="bloque">
+          <h3>Habilidades</h3>
+          <ul>
+            <li>Resolución de problemas</li>
+            <li>Trabajo en equipo</li>
+            <li>Comunicación efectiva</li>
+          </ul>
+        </div>
+      
+        <div class="bloque">
+          <h3>Capacidades</h3>
+          <p>
+            Capacidad para adaptarme rápidamente a nuevas tecnologías, aprender de forma autónoma y entregar soluciones eficientes bajo presión.
+          </p>
+        </div>
+      
+        <div class="bloque">
+          <h3>Objetivos</h3>
+          <p>
+            Continuar creciendo como desarrollador web, formar parte de proyectos desafiantes y contribuir con soluciones innovadoras que generen impacto.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <div class="marquee-container">
+    <motion.div
+      className="marquee-track"
+      animate={{ x: ['0%', '-50%'] }}
+      transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
+    >
+        {techIcons.map((icon) => (
+          <img src={icon}  class="tech-icon" />
+        ))}
+    </motion.div>
+  </div>
+</Layout>
+
+<script>
+  import { animateHeroText } from "../scripts/animations.js";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    animateHeroText();
+  });
+</script>
+
+

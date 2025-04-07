@@ -1,0 +1,48 @@
+            body {
+                background-color: #0d0d0d;
+                color: white;
+                text-align: center;
+            }
+            
+            h1,
+            h2 {
+                font-weight: bold;
+            }
+            
+            p {
+                font-size: 1.5rem;
+                line-height: 1.6;
+            }
+            
+            a {
+                color: white;
+                text-decoration: none;
+            }
+            
+            a:hover {
+                text-decoration: underline;
+            }
+            
+            .container {
+                width: 100%;
+                max-width: 900px;
+                margin: auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .hero {
+                font-size: 2rem;
+                text-align: center;
+                line-height: 1.1;
+                margin-top: 5em;
+            }
+            
+            @media (max-width: 600px) {
+                .hero {
+                    font-size: 1.5rem;
+                    margin-top: 3em;
+                }
+            }

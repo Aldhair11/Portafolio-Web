@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Layout.astro';
+import 'font-awesome/css/font-awesome.min.css';
+
+import { animateHeroText } from "../scripts/animations.js";
+
+import "../styles/pages/index.css";
+
+setTimeout(() => {
+  if (typeof window !== "undefined") {
+    animateHeroText();
+  }
+}, 600);
+---
+
+<Layout>
+    <div class="container mx-auto text-center hero">
+        <div class="section" id="home">
+            <h1 class="text-4xl font-bold hero-text">ALDHAIR LUJAN NICOLINI</h1>
+            <h2 class="text-2xl font-semibold hero-text">Web Developer</h2>
+			<h2 class="text-2xl font-semibold hero-text">FrontEnd</h2>
+			<p class="mt-4 hero-text">Bienvenido a mi portafolio. Aquí encontrarás mis proyectos y habilidades.</p>
+		</div>
+        </div>
+    </div>
+</Layout>
+
+<script>
+  import { animateHeroText } from "../scripts/animations.js";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    animateHeroText();
+  });
+</script>

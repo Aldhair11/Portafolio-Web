@@ -1,0 +1,139 @@
+    body {
+        background-color: #0d0d0d;
+        color: white;
+        text-align: center;
+        font-family: "Poppins", sans-serif;
+    }
+    
+    h2 {
+        font-size: 3.5em;
+        margin: 0;
+        color: #f0f0f0;
+    }
+    
+    main {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 20px;
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        align-items: start;
+        margin-top: 5em;
+    }
+    
+    .image-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 4em;
+    }
+    
+    .image-container img {
+        width: 100%;
+        max-width: 300px;
+        border-radius: 10px;
+        height: auto;
+        max-height: 800px;
+    }
+    
+    .info-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        p {
+            font-size: 1.2em;
+            line-height: 1.5;
+            display: flex;
+            text-align: start;
+        }
+    }
+    
+    .conocimientos-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .conocimientos-container div {
+        padding: 20px;
+        text-align: center;
+        font-style: italic;
+        font-size: 15px;
+        background: #ffffff1a;
+        border-radius: 12px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .conocimientos-container div:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    .bloque h3 {
+        font-size: 18px;
+    }
+    
+    .bloque ul {
+        list-style: disc;
+        padding-left: 20px;
+        text-align: left;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+    
+    .bloque p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+    
+    .marquee-container {
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 0;
+        position: relative;
+    }
+    
+    .marquee-track {
+        display: flex;
+        gap: 40px;
+        will-change: transform;
+        animation: marquee 20s linear infinite;
+    }
+    
+    .tech-icon {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+        flex-shrink: 0;
+    }
+    
+    @media (max-width: 768px) {
+        .image-container img {
+            display: none;
+        }
+        main {
+            margin-top: -3.9em;
+            grid-template-columns: none;
+            gap: 1px;
+        }
+        .about-me {
+            p {
+                display: contents;
+            }
+        }
+        @keyframes marquee {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        .marquee-track {
+            width: 130%;
+        }
+    }

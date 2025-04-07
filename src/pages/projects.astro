@@ -1,0 +1,56 @@
+---
+import Layout from "../layouts/Layout.astro"
+import "../styles/pages/projects.css";
+import NLImage from "../assets/NL.png"
+import EcoImage from "../assets/Ecommerce.png"
+import LujanImage from "../assets/abogados.png"
+import CrudImage from "../assets/crud.png"
+
+import { animateHeroText } from "../scripts/animations.js";
+
+
+setTimeout(() => {
+  if (typeof window !== "undefined") {
+    animateHeroText();
+  }
+}, 600);
+
+
+---
+
+<Layout>
+  <section class="py-12 bg-gray-100">
+      <div class="container mx-auto text-center">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8 title hero-text">Mis proyectos</h2>
+        <div class="projects-grid ">
+          {[
+            { id: "1", titulo: "Eccomerce", img: EcoImage.src, link: "/projects/ecommerce" },
+            { id: "2", titulo: "NL Solutions", img: NLImage.src, link: "/projects/nl-solutions" },
+            { id: "3", titulo: "Lujan Rabello & Abogados", img: LujanImage.src, link: "/projects/lujan-rabello" },
+            { id: "4", titulo: "CRUD - ALBALEX", img: CrudImage.src, link: "/projects/crud" },
+          ].map((proyecto) => (
+            <div class="bg-white rounded-lg shadow-md p-4 card">
+              <img src={proyecto.img} alt={proyecto.titulo} class="w-full h-48 object-cover rounded-lg card-img " />
+              <h3 class="text-lg font-semibold mt-4">{proyecto.titulo}</h3>
+              <div class="mt-4">
+                <a href={proyecto.link}>
+                  <button class="block w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition card-btn">
+                    Más información
+                  </button>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+  </section>
+</Layout>
+
+<script>
+  import { animateHeroText } from "../scripts/animations.js";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    animateHeroText();
+  });
+</script>
+

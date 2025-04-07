@@ -1,0 +1,54 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import "../../styles/pages/projects-info.css";
+import EcoImage from "../../assets/nl-2.png";
+
+import { animateHeroText } from "../../scripts/animations.js";
+
+
+setTimeout(() => {
+  if (typeof window !== "undefined") {
+    animateHeroText();
+  }
+}, 600);
+---
+
+<Layout>
+  <section class="py-12 bg-black text-white">
+    <div class="container mx-auto max-w-3xl px-6">
+      
+      <div class="flex justify-between items-center">
+        <h1 class="text-5xl font-bold hero-text">NL Solutions</h1>
+      </div>
+
+      <div class="mt-6">
+        <img src={EcoImage.src} alt="NL Solutions" class="rounded-lg w-full shadow-lg hero-text" />
+        <a href="https://drive.google.com/file/d/1O0CLYiTPJOgtQRub73suWgTP5MA_zEBn/view?usp=sharing" target="_blank" class="px-5 py-2 border border-gray-500 rounded-full hover:bg-gray-800 transition btn-prototipo">
+          Ver Prototipo
+        </a>
+      </div>
+
+      <div class="mt-10">
+        <h2 class="text-2xl font-semibold hero-text">¿De que trata?</h2>
+        <p class="text-gray-400 mt-4 hero-text">
+          Sitio Web para una empresa de soluciones informáticas, donde los usuarios pueden encontrar información sobre los servicios ofrecidos y contactar a la empresa. El sitio incluye un formulario de contacto para brindar asistencia a los visitantes.
+        </p>
+      </div>
+
+      <div class="mt-10">
+        <h3 class="text-lg font-semibold hero-text">Tecnologia Usadas</h3>
+        <p class="text-gray-400 mt-2 hero-text">
+          React Vite • C# • Bootstrap • MongoDB • HTML • CSS 
+        </p>
+      </div>
+
+    </div>
+  </section>
+</Layout>
+<script>
+  import { animateHeroText } from "../../scripts/animations.js";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    animateHeroText();
+  });
+</script>
