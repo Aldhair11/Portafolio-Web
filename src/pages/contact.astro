@@ -44,7 +44,7 @@ import Swal from 'sweetalert2';
     const data = Object.fromEntries(formData);
 
     try {
-      const res = await fetch("http://localhost:5000/api/contact", {
+      const res = await fetch("https://portafolioweb-backend-5h07.onrender.com/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
