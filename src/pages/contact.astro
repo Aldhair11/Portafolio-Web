@@ -64,14 +64,23 @@ document.querySelector('#contact-form').addEventListener('submit', async (event)
 
   console.log("Respuesta del servidor:", res);
   console.log("Código de estado de la respuesta:", res.status);
-  
+
+  // Verificar si la respuesta no es exitosa
   if (!res.ok) {
     const errorMessage = `Error al enviar el formulario: ${res.statusText}`;
     throw new Error(errorMessage);
   }
 
-  const result = await res.json();
-  console.log("Resultado de la respuesta JSON:", result);
+  // Intentamos parsear la respuesta como JSON
+  let result;
+  try {
+    result = await res.json();  // Parsear la respuesta JSON
+    console.log("Resultado de la respuesta JSON:", result);
+  } catch (jsonError) {
+    // Si no es JSON, se captura el error y mostramos el texto de la respuesta
+    const errorMessage = await res.text(); // Obtener la respuesta en texto
+    throw new Error(`Error al analizar la respuesta JSON: ${errorMessage}`);
+  }
 
   // Limpiar alertas previas
   document.getElementById('success-alert').style.display = 'none';
