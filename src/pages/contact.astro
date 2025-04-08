@@ -64,8 +64,7 @@ document.querySelector('#contact-form').addEventListener('submit', async (event)
 
   console.log("Respuesta del servidor:", res);
   console.log("Código de estado de la respuesta:", res.status);
-
-  // Verifica si la respuesta no es exitosa
+  
   if (!res.ok) {
     const errorMessage = `Error al enviar el formulario: ${res.statusText}`;
     throw new Error(errorMessage);
