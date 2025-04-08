@@ -62,7 +62,15 @@ document.querySelector('#contact-form').addEventListener('submit', async (event)
     body: JSON.stringify(data)
   });
 
+console.log("Respuesta del servidor:", res);
+console.log("Código de estado de la respuesta:", res.status);
+if (!res.ok) {
+    throw new Error(`Error al enviar el formulario: ${res.statusText}`);
+  }
+
   const result = await res.json();
+
+  console.log("Resultado de la respuesta JSON:", result);
 
   // Limpiar alertas previas
   document.getElementById('success-alert').style.display = 'none';
@@ -70,16 +78,16 @@ document.querySelector('#contact-form').addEventListener('submit', async (event)
   document.getElementById('warning-alert').style.display = 'none';
 
   // Comprobar el estado de la respuesta
-  if (res.ok && result.success) {
-    // Alerta de envío exitoso
+  if (result.success) {
+    // Alerta de éxito
     const successAlert = document.getElementById('success-alert');
     successAlert.style.display = 'block';
-    setTimeout(() => successAlert.style.display = 'none', 5000);  
-    form.reset();  
+    setTimeout(() => successAlert.style.display = 'none', 5000);
+    form.reset();
   } else {
-    // Si la respuesta no fue exitosa, muestra un mensaje de error
+    // Si 'success' es false o no existe
     const errorAlert = document.getElementById('error-alert');
-    errorAlert.innerHTML = result.message || 'Ocurrió un error al enviar el formulario'; // Mostrar mensaje de error de la API
+    errorAlert.innerHTML = result.message || 'Ocurrió un error al enviar el formulario';
     errorAlert.style.display = 'block';
     setTimeout(() => errorAlert.style.display = 'none', 5000);
   }
@@ -90,7 +98,7 @@ document.querySelector('#contact-form').addEventListener('submit', async (event)
   const errorAlert = document.getElementById('error-alert');
   errorAlert.innerHTML = 'Hubo un problema de red, por favor intente nuevamente.';
   errorAlert.style.display = 'block';
-  setTimeout(() => errorAlert.style.display = 'none', 5000);  
+  setTimeout(() => errorAlert.style.display = 'none', 5000);
 } finally {
   // Habilitar el botón nuevamente después de procesar la solicitud
   submitButton.disabled = false;
