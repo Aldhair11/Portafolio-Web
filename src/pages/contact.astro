@@ -56,44 +56,45 @@ document.querySelector('#contact-form').addEventListener('submit', async (event)
   submitButton.disabled = true;
 
   try {
-    const res = await fetch('https://portafolio-php.onrender.com', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
+  const res = await fetch('https://portafolio-php.onrender.com', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
 
-    const result = await res.json();  
+  const result = await res.json();
 
-    // Limpiar alertas previas
-    document.getElementById('success-alert').style.display = 'none';
-    document.getElementById('error-alert').style.display = 'none';
-    document.getElementById('warning-alert').style.display = 'none';
+  // Limpiar alertas previas
+  document.getElementById('success-alert').style.display = 'none';
+  document.getElementById('error-alert').style.display = 'none';
+  document.getElementById('warning-alert').style.display = 'none';
 
-    if (res.ok && result.success) {
-      // Alerta de envío exitoso
-      const successAlert = document.getElementById('success-alert');
-      successAlert.style.display = 'block';
-      setTimeout(() => successAlert.style.display = 'none', 5000);  
-      form.reset();  
-    } else {
-      // Alerta de error
-      const errorAlert = document.getElementById('error-alert');
-      errorAlert.innerHTML = result.message || 'Ocurrió un error al enviar el formulario'; // Mostrar mensaje de error de la API
-      errorAlert.style.display = 'block';
-      setTimeout(() => errorAlert.style.display = 'none', 5000);
-    }
-  } catch (err) {
-    console.log('Error:', err);  
-
-    // Alerta de error de red
+  // Comprobar el estado de la respuesta
+  if (res.ok && result.success) {
+    // Alerta de envío exitoso
+    const successAlert = document.getElementById('success-alert');
+    successAlert.style.display = 'block';
+    setTimeout(() => successAlert.style.display = 'none', 5000);  
+    form.reset();  
+  } else {
+    // Si la respuesta no fue exitosa, muestra un mensaje de error
     const errorAlert = document.getElementById('error-alert');
-    errorAlert.innerHTML = 'Hubo un problema de red, por favor intente nuevamente.';
+    errorAlert.innerHTML = result.message || 'Ocurrió un error al enviar el formulario'; // Mostrar mensaje de error de la API
     errorAlert.style.display = 'block';
-    setTimeout(() => errorAlert.style.display = 'none', 5000);  
-  } finally {
-    // Habilitar el botón nuevamente después de procesar la solicitud
-    submitButton.disabled = false;
+    setTimeout(() => errorAlert.style.display = 'none', 5000);
   }
+} catch (err) {
+  console.log('Error:', err);  
+
+  // Alerta de error de red
+  const errorAlert = document.getElementById('error-alert');
+  errorAlert.innerHTML = 'Hubo un problema de red, por favor intente nuevamente.';
+  errorAlert.style.display = 'block';
+  setTimeout(() => errorAlert.style.display = 'none', 5000);  
+} finally {
+  // Habilitar el botón nuevamente después de procesar la solicitud
+  submitButton.disabled = false;
+}
 });
 </script>
 </Layout>
