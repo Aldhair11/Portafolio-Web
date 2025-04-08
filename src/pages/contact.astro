@@ -62,14 +62,16 @@ document.querySelector('#contact-form').addEventListener('submit', async (event)
     body: JSON.stringify(data)
   });
 
-console.log("Respuesta del servidor:", res);
-console.log("Código de estado de la respuesta:", res.status);
-if (!res.ok) {
-    throw new Error(`Error al enviar el formulario: ${res.statusText}`);
+  console.log("Respuesta del servidor:", res);
+  console.log("Código de estado de la respuesta:", res.status);
+
+  // Verifica si la respuesta no es exitosa
+  if (!res.ok) {
+    const errorMessage = `Error al enviar el formulario: ${res.statusText}`;
+    throw new Error(errorMessage);
   }
 
   const result = await res.json();
-
   console.log("Resultado de la respuesta JSON:", result);
 
   // Limpiar alertas previas
@@ -77,26 +79,27 @@ if (!res.ok) {
   document.getElementById('error-alert').style.display = 'none';
   document.getElementById('warning-alert').style.display = 'none';
 
-  // Comprobar el estado de la respuesta
+  // Comprobar el estado de la respuesta del backend
   if (result.success) {
     // Alerta de éxito
     const successAlert = document.getElementById('success-alert');
     successAlert.style.display = 'block';
     setTimeout(() => successAlert.style.display = 'none', 5000);
-    form.reset();
+    form.reset();  // Limpiar el formulario
   } else {
-    // Si 'success' es false o no existe
+    // Alerta de error si 'success' es false
     const errorAlert = document.getElementById('error-alert');
     errorAlert.innerHTML = result.message || 'Ocurrió un error al enviar el formulario';
     errorAlert.style.display = 'block';
     setTimeout(() => errorAlert.style.display = 'none', 5000);
   }
-} catch (err) {
-  console.log('Error:', err);  
 
-  // Alerta de error de red
+} catch (err) {
+  console.log('Error:', err);
+
+  // Alerta de error de red o errores generales
   const errorAlert = document.getElementById('error-alert');
-  errorAlert.innerHTML = 'Hubo un problema de red, por favor intente nuevamente.';
+  errorAlert.innerHTML = err.message || 'Hubo un problema de red, por favor intente nuevamente.';
   errorAlert.style.display = 'block';
   setTimeout(() => errorAlert.style.display = 'none', 5000);
 } finally {
