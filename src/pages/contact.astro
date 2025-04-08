@@ -62,54 +62,35 @@ document.querySelector('#contact-form').addEventListener('submit', async (event)
     body: JSON.stringify(data)
   });
 
-  console.log("Respuesta del servidor:", res);
-  console.log("Código de estado de la respuesta:", res.status);
-
-  // Verificar si la respuesta no es exitosa
-  if (!res.ok) {
-    const errorMessage = `Error al enviar el formulario: ${res.statusText}`;
-    throw new Error(errorMessage);
-  }
-
-  // Intentamos parsear la respuesta como JSON
-  let result;
-  try {
-    result = await res.json();  // Parsear la respuesta JSON
-    console.log("Resultado de la respuesta JSON:", result);
-  } catch (jsonError) {
-    // Si no es JSON, se captura el error y mostramos el texto de la respuesta
-    const errorMessage = await res.text(); // Obtener la respuesta en texto
-    throw new Error(`Error al analizar la respuesta JSON: ${errorMessage}`);
-  }
+  const result = await res.json();
 
   // Limpiar alertas previas
   document.getElementById('success-alert').style.display = 'none';
   document.getElementById('error-alert').style.display = 'none';
   document.getElementById('warning-alert').style.display = 'none';
 
-  // Comprobar el estado de la respuesta del backend
-  if (result.success) {
-    // Alerta de éxito
+  // Comprobar el estado de la respuesta
+  if (res.ok && result.success) {
+    // Alerta de envío exitoso
     const successAlert = document.getElementById('success-alert');
     successAlert.style.display = 'block';
-    setTimeout(() => successAlert.style.display = 'none', 5000);
-    form.reset();  // Limpiar el formulario
+    setTimeout(() => successAlert.style.display = 'none', 5000);  
+    form.reset();  
   } else {
-    // Alerta de error si 'success' es false
+    // Si la respuesta no fue exitosa, muestra un mensaje de error
     const errorAlert = document.getElementById('error-alert');
-    errorAlert.innerHTML = result.message || 'Ocurrió un error al enviar el formulario';
+    errorAlert.innerHTML = result.message || 'Ocurrió un error al enviar el formulario'; // Mostrar mensaje de error de la API
     errorAlert.style.display = 'block';
     setTimeout(() => errorAlert.style.display = 'none', 5000);
   }
-
 } catch (err) {
-  console.log('Error:', err);
+  console.log('Error:', err);  
 
-  // Alerta de error de red o errores generales
+  // Alerta de error de red
   const errorAlert = document.getElementById('error-alert');
-  errorAlert.innerHTML = err.message || 'Hubo un problema de red, por favor intente nuevamente.';
+  errorAlert.innerHTML = 'Hubo un problema de red, por favor intente nuevamente.';
   errorAlert.style.display = 'block';
-  setTimeout(() => errorAlert.style.display = 'none', 5000);
+  setTimeout(() => errorAlert.style.display = 'none', 5000);  
 } finally {
   // Habilitar el botón nuevamente después de procesar la solicitud
   submitButton.disabled = false;
