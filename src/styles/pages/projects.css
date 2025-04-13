@@ -15,7 +15,7 @@
     .projects-grid {
         display: grid;
         gap: 50px;
-        width: 100%;
+        width: 95% !important;
         max-width: 1300px;
         margin: 0 auto;
         grid-template-columns: repeat(2, 1fr);

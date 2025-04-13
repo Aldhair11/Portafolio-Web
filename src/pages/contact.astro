@@ -48,7 +48,7 @@ document.querySelector('#contact-form').addEventListener('submit', async (event)
     const warningAlert = document.getElementById('warning-alert');
     warningAlert.style.display = 'block';
     setTimeout(() => warningAlert.style.display = 'none', 5000);
-    return; // Detiene el envío si algún campo está vacío
+    return; 
   }
 
   // Deshabilitar el botón para evitar múltiples envíos
@@ -64,22 +64,21 @@ document.querySelector('#contact-form').addEventListener('submit', async (event)
 
   const result = await res.json();
 
-  // Limpiar alertas previas
+  // Limpia alertas previas
   document.getElementById('success-alert').style.display = 'none';
   document.getElementById('error-alert').style.display = 'none';
   document.getElementById('warning-alert').style.display = 'none';
 
-  // Comprobar el estado de la respuesta
+  // Comprobar estado de la respuesta
   if (res.ok && result.success) {
-    // Alerta de envío exitoso
     const successAlert = document.getElementById('success-alert');
     successAlert.style.display = 'block';
     setTimeout(() => successAlert.style.display = 'none', 5000);  
     form.reset();  
   } else {
-    // Si la respuesta no fue exitosa, muestra un mensaje de error
+    // Respuesta no fue exitosa
     const errorAlert = document.getElementById('error-alert');
-    errorAlert.innerHTML = result.message || 'Ocurrió un error al enviar el formulario'; // Mostrar mensaje de error de la API
+    errorAlert.innerHTML = result.message || 'Ocurrió un error al enviar el formulario'; 
     errorAlert.style.display = 'block';
     setTimeout(() => errorAlert.style.display = 'none', 5000);
   }
@@ -92,7 +91,7 @@ document.querySelector('#contact-form').addEventListener('submit', async (event)
   errorAlert.style.display = 'block';
   setTimeout(() => errorAlert.style.display = 'none', 5000);  
 } finally {
-  // Habilitar el botón nuevamente después de procesar la solicitud
+  // Habilita el botón 
   submitButton.disabled = false;
 }
 });
